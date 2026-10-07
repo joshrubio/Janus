@@ -13,15 +13,15 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#171717",
-          borderRadius: 7,
+          background: "#EA7317",
+          borderRadius: 10,
           color: "white",
           fontSize: 20,
           fontWeight: 700,
           fontFamily: "sans-serif",
         }}
       >
-        D
+        J
       </div>
     ),
     size

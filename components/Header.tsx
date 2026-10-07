@@ -15,7 +15,7 @@ export default function Header() {
     <header className="sticky top-0 z-30 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="max-w-3xl mx-auto px-6 h-14 flex items-center justify-between">
         <Link href="/" className="font-semibold tracking-tight">
-          Dev Platform Portal
+          Janus
         </Link>
         {mounted && (
           <Button

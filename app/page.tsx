@@ -31,10 +31,11 @@ const PILLARS = [
 export default function Home() {
   return (
     <main className="max-w-3xl mx-auto px-6 py-16">
-      <h1 className="text-3xl font-bold tracking-tight">Dev Platform Portal</h1>
+      <h1 className="text-3xl font-bold tracking-tight">Janus</h1>
       <p className="text-muted-foreground mt-3 max-w-xl">
-        A self-service internal developer platform, in miniature — the kind of tooling a
-        Platform Engineering team builds for its own engineers.
+        A self-service developer platform, in miniature — the kind of tooling a Platform
+        Engineering team builds for its own engineers. Named for the Roman god of gates and
+        transitions: this is the door into your environments, services, and pipelines.
       </p>
 
       <Separator className="my-8" />

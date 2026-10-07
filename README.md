@@ -1,6 +1,6 @@
-# Dev Platform Portal
+# Janus
 
-A self-service internal developer platform, in miniature — the kind of tooling a Platform Engineering team builds for its own engineers. Built as a standalone portfolio project.
+Named for the Roman god of gates, doors and transitions — a self-service developer platform, in miniature — the kind of tooling a Platform Engineering team builds for its own engineers. Built as a standalone portfolio project.
 
 ## The four pillars
 
