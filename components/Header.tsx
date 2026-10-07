@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import { Moon, Sun } from "lucide-react";
+import { Moon, Sun, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export default function Header() {
@@ -17,16 +17,29 @@ export default function Header() {
         <Link href="/" className="font-serif italic text-lg tracking-tight">
           Janus
         </Link>
-        {mounted && (
-          <Button
-            variant="ghost"
-            size="icon"
-            aria-label="Toggle theme"
-            onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new CustomEvent("open-command-palette"))}
+            className="flex items-center gap-2 text-sm text-muted-foreground border rounded-md px-2.5 h-8 hover:text-foreground hover:bg-accent transition-colors"
           >
-            {resolvedTheme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
-          </Button>
-        )}
+            <Search className="size-3.5" />
+            <span className="hidden sm:inline">Search</span>
+            <kbd className="hidden sm:inline text-[10px] border rounded px-1 py-0.5 text-muted-foreground/70 font-mono">
+              ⌘K
+            </kbd>
+          </button>
+          {mounted && (
+            <Button
+              variant="ghost"
+              size="icon"
+              aria-label="Toggle theme"
+              onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+            >
+              {resolvedTheme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
+            </Button>
+          )}
+        </div>
       </div>
     </header>
   );
