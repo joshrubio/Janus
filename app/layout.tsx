@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import Header from "@/components/Header";
 import CommandPalette from "@/components/CommandPalette";
 import AssistantSidebar from "@/components/AssistantSidebar";
+import Footer from "@/components/Footer";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -43,6 +44,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <div className="min-w-0 flex-1">{children}</div>
           </div>
           <CommandPalette />
+          <Footer />
           <Toaster position="bottom-right" />
         </ThemeProvider>
       </body>
