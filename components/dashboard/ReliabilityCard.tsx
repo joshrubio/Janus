@@ -36,16 +36,18 @@ function CustomTooltip({
 export default function ReliabilityCard({
   successRate,
   weekdayOutcomes,
+  className,
 }: {
   successRate: number;
   weekdayOutcomes: WeekdayOutcome[];
+  className?: string;
 }) {
   return (
-    <Card className="flex-1">
+    <Card className={`flex flex-col ${className ?? ""}`}>
       <CardHeader>
         <CardTitle>Pipeline reliability</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="flex flex-1 flex-col">
         <div className="flex items-start gap-6">
           <div className="shrink-0">
             <p className="font-serif text-4xl tracking-tight">{successRate}%</p>
@@ -61,7 +63,7 @@ export default function ReliabilityCard({
           </div>
         </div>
 
-        <div className="mt-5 h-32 w-full">
+        <div className="mt-5 min-h-32 w-full flex-1">
           <ResponsiveContainer width="100%" height="100%">
             <BarChart data={weekdayOutcomes} margin={{ top: 0, right: 0, left: 0, bottom: 0 }} barGap={2}>
               <CartesianGrid vertical={false} strokeDasharray="3 5" style={{ stroke: "var(--border)" }} />

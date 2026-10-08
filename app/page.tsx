@@ -28,53 +28,61 @@ export default function DashboardPage() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard
-          label="Services"
-          value={String(stats.serviceCount)}
-          delta={DEMO_DELTAS.services}
-          caption={DEMO_DELTAS.services.caption}
-        />
-        <StatCard
-          label="Healthy"
-          value={`${Math.round((stats.healthyCount / stats.serviceCount) * 100)}%`}
-          delta={DEMO_DELTAS.healthy}
-          caption={`${stats.healthyCount} of ${stats.serviceCount} services`}
-        />
-        <StatCard
-          label="Pipeline runs"
-          value={String(stats.runCount)}
-          delta={DEMO_DELTAS.pipelines}
-          caption={`${stats.runningCount} running · ${stats.failedCount} failed`}
-        />
-        <StatCard
-          label="Docs indexed"
-          value={String(stats.docsIndexed)}
-          delta={DEMO_DELTAS.docs}
-          caption={DEMO_DELTAS.docs.caption}
-        />
-      </div>
+      <div className="grid grid-cols-1 gap-6 xl:grid-cols-[2fr_1fr]">
+        <div className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <StatCard
+              label="Services"
+              value={String(stats.serviceCount)}
+              delta={DEMO_DELTAS.services}
+              caption={DEMO_DELTAS.services.caption}
+            />
+            <StatCard
+              label="Healthy"
+              value={`${Math.round((stats.healthyCount / stats.serviceCount) * 100)}%`}
+              delta={DEMO_DELTAS.healthy}
+              caption={`${stats.healthyCount} of ${stats.serviceCount} services`}
+            />
+            <StatCard
+              label="Pipeline runs"
+              value={String(stats.runCount)}
+              delta={DEMO_DELTAS.pipelines}
+              caption={`${stats.runningCount} running · ${stats.failedCount} failed`}
+            />
+            <StatCard
+              label="Docs indexed"
+              value={String(stats.docsIndexed)}
+              delta={DEMO_DELTAS.docs}
+              caption={DEMO_DELTAS.docs.caption}
+            />
+          </div>
 
-      <Card className="mt-6">
-        <CardHeader>
-          <CardTitle>Pipeline runs over time</CardTitle>
-          <p className="text-sm text-muted-foreground">
-            {totalSeriesRuns.toLocaleString()} runs across the last 30 days (synthetic demo
-            series, same spirit as the seeded pipeline runs below).
-          </p>
-        </CardHeader>
-        <CardContent>
-          <RunsChart data={series} />
-        </CardContent>
-      </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle>Pipeline runs over time</CardTitle>
+              <p className="text-sm text-muted-foreground">
+                {totalSeriesRuns.toLocaleString()} runs across the last 30 days (synthetic demo
+                series, same spirit as the seeded pipeline runs below).
+              </p>
+            </CardHeader>
+            <CardContent>
+              <RunsChart data={series} />
+            </CardContent>
+          </Card>
+        </div>
 
-      <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2">
-        <ServiceBreakdownCard
-          statusBreakdown={stats.statusBreakdown}
-          typeBreakdown={stats.typeBreakdown}
-          total={stats.serviceCount}
-        />
-        <ReliabilityCard successRate={stats.successRate} weekdayOutcomes={weekdayOutcomes} />
+        <div className="flex flex-col gap-4">
+          <ServiceBreakdownCard
+            statusBreakdown={stats.statusBreakdown}
+            typeBreakdown={stats.typeBreakdown}
+            total={stats.serviceCount}
+          />
+          <ReliabilityCard
+            className="flex-1"
+            successRate={stats.successRate}
+            weekdayOutcomes={weekdayOutcomes}
+          />
+        </div>
       </div>
 
       <div className="mt-10">
