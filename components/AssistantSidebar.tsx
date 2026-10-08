@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { MessageCircle } from "lucide-react";
 import AssistantChat from "@/components/AssistantChat";
 
 export default function AssistantSidebar() {
+  const pathname = usePathname();
   const [hovered, setHovered] = useState(false);
 
   useEffect(() => {
@@ -14,6 +16,8 @@ export default function AssistantSidebar() {
     window.addEventListener("open-assistant", onOpenRequest);
     return () => window.removeEventListener("open-assistant", onOpenRequest);
   }, []);
+
+  if (pathname === "/login") return null;
 
   return (
     <div

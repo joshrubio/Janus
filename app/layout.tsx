@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Plus_Jakarta_Sans, Fraunces, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -38,9 +39,13 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
-          <Header />
+          <Suspense fallback={<div className="h-14 border-b" />}>
+            <Header />
+          </Suspense>
           <div className="flex flex-1">
-            <AssistantSidebar />
+            <Suspense fallback={<div className="w-12 shrink-0 border-r" />}>
+              <AssistantSidebar />
+            </Suspense>
             <div className="min-w-0 flex-1">{children}</div>
           </div>
           <CommandPalette />

@@ -1,14 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useTheme } from "next-themes";
 import { Suspense, useEffect, useState } from "react";
-import { Moon, Sun, Search } from "lucide-react";
+import { Moon, Sun, Search, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import HeaderNav from "@/components/HeaderNav";
+import { signOut } from "@/app/login/actions";
 
 export default function Header() {
   const { setTheme, resolvedTheme } = useTheme();
+  const pathname = usePathname();
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     // One-time hydration-safe mount flag (next-themes' own recommended
@@ -16,6 +19,8 @@ export default function Header() {
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
+
+  if (pathname === "/login") return null;
 
   return (
     <header className="sticky top-0 z-30 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -50,6 +55,11 @@ export default function Header() {
               {resolvedTheme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
             </Button>
           )}
+          <form action={signOut}>
+            <Button variant="ghost" size="icon" type="submit" aria-label="Sign out" title="Sign out">
+              <LogOut className="size-4" />
+            </Button>
+          </form>
         </div>
       </div>
     </header>
