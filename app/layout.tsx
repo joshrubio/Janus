@@ -5,6 +5,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/sonner";
 import Header from "@/components/Header";
 import CommandPalette from "@/components/CommandPalette";
+import AssistantSidebar from "@/components/AssistantSidebar";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -37,7 +38,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="min-h-full flex flex-col">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false} disableTransitionOnChange>
           <Header />
-          <div className="flex-1">{children}</div>
+          <div className="flex flex-1">
+            <AssistantSidebar />
+            <div className="min-w-0 flex-1">{children}</div>
+          </div>
           <CommandPalette />
           <Toaster position="bottom-right" />
         </ThemeProvider>

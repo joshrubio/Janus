@@ -14,7 +14,15 @@ export default function PipelinesPage() {
   const runs = getRuns();
 
   return (
-    <div className="grid gap-6">
+    <div>
+      <div className="mb-8">
+        <h1 className="font-serif italic text-2xl tracking-tight">Pipelines</h1>
+        <p className="mt-1 max-w-lg text-sm text-muted-foreground">
+          Recent CI runs across every service, grouped by status.
+        </p>
+      </div>
+
+      <div className="grid gap-6">
       {STATUS_ORDER.map((status) => {
         const group = runs.filter((r) => r.status === status);
         if (group.length === 0) return null;
@@ -58,6 +66,7 @@ export default function PipelinesPage() {
           </div>
         );
       })}
+      </div>
     </div>
   );
 }

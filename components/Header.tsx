@@ -2,21 +2,32 @@
 
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Moon, Sun, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import HeaderNav from "@/components/HeaderNav";
 
 export default function Header() {
   const { setTheme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    // One-time hydration-safe mount flag (next-themes' own recommended
+    // pattern) — intentionally synchronous, not a subscription.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setMounted(true);
+  }, []);
 
   return (
     <header className="sticky top-0 z-30 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="max-w-4xl mx-auto px-6 h-14 flex items-center justify-between">
-        <Link href="/" className="font-serif italic text-lg tracking-tight">
-          Janus
-        </Link>
+      <div className="flex h-14 items-center justify-between gap-8 px-6">
+        <div className="flex items-center gap-8">
+          <Link href="/" className="font-serif italic text-lg tracking-tight shrink-0">
+            Janus
+          </Link>
+          <Suspense fallback={<div className="h-5 w-64" />}>
+            <HeaderNav />
+          </Suspense>
+        </div>
         <div className="flex items-center gap-2">
           <button
             type="button"

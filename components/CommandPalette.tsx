@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {
   BookOpen,
+  LayoutDashboard,
   Rocket,
   GitBranch,
   MessageCircle,
@@ -22,10 +23,10 @@ import {
 import { getServices } from "@/lib/services";
 
 const PILLARS = [
+  { href: "/", label: "Dashboard", icon: LayoutDashboard },
   { href: "/catalog", label: "Catalog", icon: BookOpen },
   { href: "/provisioning", label: "Provisioning", icon: Rocket },
   { href: "/pipelines", label: "Pipelines", icon: GitBranch },
-  { href: "/assistant", label: "Assistant", icon: MessageCircle },
 ];
 
 export default function CommandPalette() {
@@ -56,6 +57,11 @@ export default function CommandPalette() {
     setOpen(false);
   }
 
+  function openAssistant() {
+    window.dispatchEvent(new CustomEvent("open-assistant"));
+    setOpen(false);
+  }
+
   return (
     <CommandDialog open={open} onOpenChange={setOpen} title="Command palette">
       <Command>
@@ -69,6 +75,10 @@ export default function CommandPalette() {
                 {p.label}
               </CommandItem>
             ))}
+            <CommandItem onSelect={openAssistant}>
+              <MessageCircle className="size-4" />
+              Open Assistant
+            </CommandItem>
           </CommandGroup>
           <CommandGroup heading="Services">
             {services.map((s) => (

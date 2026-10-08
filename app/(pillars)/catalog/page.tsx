@@ -5,7 +5,15 @@ export default function CatalogPage() {
   const services = getServices();
 
   return (
-    <div className="divide-y divide-border">
+    <div>
+      <div className="mb-8">
+        <h1 className="font-serif italic text-2xl tracking-tight">Catalog</h1>
+        <p className="mt-1 max-w-lg text-sm text-muted-foreground">
+          Every service Janus knows about — ownership, stack, and current status.
+        </p>
+      </div>
+
+      <div className="divide-y divide-border">
       {services.map((service) => (
         <Link
           key={service.slug}
@@ -46,6 +54,7 @@ export default function CatalogPage() {
           </div>
         </Link>
       ))}
+      </div>
     </div>
   );
 }
