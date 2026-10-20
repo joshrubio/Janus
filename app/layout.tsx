@@ -49,7 +49,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             <div className="min-w-0 flex-1">{children}</div>
           </div>
           <CommandPalette />
-          <Footer />
+          <Suspense fallback={<div className="h-10 border-t" />}>
+            <Footer />
+          </Suspense>
           <Toaster position="bottom-right" />
         </ThemeProvider>
       </body>

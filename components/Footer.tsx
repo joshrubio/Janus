@@ -1,4 +1,11 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+
 export default function Footer() {
+  const pathname = usePathname();
+  if (pathname === "/login") return null;
+
   return (
     <footer className="shrink-0 border-t px-5 py-3 flex flex-wrap items-center justify-between gap-2 text-xs text-muted-foreground">
       <p>
